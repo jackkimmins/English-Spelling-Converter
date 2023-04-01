@@ -1,0 +1,26 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    border: none;
+    resize: none;
+    outline: none;
+
+    &:focus {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+textarea:first-child {
+    border-right: 1px solid #ccc;
+}

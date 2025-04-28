@@ -15,8 +15,17 @@ async function loadWordMappings() {
 }
 
 function convertAmToBr(text) {
-    const words = text.split(' ');
+    // replace em-dashes with hyphens
+    let result = text.replace(/—/g, '-');
 
+    // replace single sentence-ending space with double space
+    result = result
+        .replace(/\. */g, '.  ')
+        .replace(/\? */g, '?  ')
+        .replace(/! */g, '!  ');
+
+    // now word-by-word American→British
+    const words = result.split(' ');
     for (let i = 0; i < words.length; i++) {
         const word = words[i];
         const lowerCaseWord = word.toLowerCase();
@@ -24,8 +33,11 @@ function convertAmToBr(text) {
         if (amToBrDict[lowerCaseWord]) {
             const firstLetter = word[0];
             const isUpperCase = firstLetter === firstLetter.toUpperCase();
-            const convertedWord = isUpperCase ? amToBrDict[lowerCaseWord].charAt(0).toUpperCase() + amToBrDict[lowerCaseWord].slice(1) : amToBrDict[lowerCaseWord];
-            words[i] = convertedWord;
+            const british = amToBrDict[lowerCaseWord];
+            const converted = isUpperCase
+                ? british.charAt(0).toUpperCase() + british.slice(1)
+                : british;
+            words[i] = converted;
         }
     }
 

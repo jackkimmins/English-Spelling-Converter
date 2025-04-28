@@ -21,6 +21,8 @@ function convertAmToBr(text) {
     // Replace curly quotes with normal quotes
     result = result.replace(/[“”]/g, '"');
 
+    result = text.replace(/’/g, "'");
+
     // replace single sentence-ending space with double space
     result = result
         .replace(/\. */g, '.  ')

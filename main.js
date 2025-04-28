@@ -18,6 +18,9 @@ function convertAmToBr(text) {
     // replace em-dashes with hyphens
     let result = text.replace(/—/g, '-');
 
+    // Replace curly quotes with normal quotes
+    result = result.replace(/[“”]/g, '"');
+
     // replace single sentence-ending space with double space
     result = result
         .replace(/\. */g, '.  ')
